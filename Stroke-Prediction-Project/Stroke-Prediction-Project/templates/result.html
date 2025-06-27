@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STROKE-PREDICTION | TOOL</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2A5C82;
+            --secondary-color: #5BA4E6;
+            --accent-color: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: var(--primary-color) !important;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .hero-section {
+            background: var(--primary-color);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .danger-result {
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .safe-result {
+            border-left: 5px solid #6BCB77;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-brain"></i> STROKE-PREDICTION | TOOL
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <div class="hero-section text-center text-white rounded-3">
+            <h1 class="display-5 mb-4">AI-Powered Stroke Risk Assessment</h1>
+            <p class="lead">Advanced machine learning analysis for stroke prediction</p>
+        </div>
+
+        <div class="result-card p-5">
+            {% if prediction==1 %}
+            <div class="danger-result px-4">
+                <div class="text-center">
+                    <i class="fa-solid fa-triangle-exclamation result-icon text-danger"></i>
+                </div>
+                <h2 class="text-center mb-3">Potential Stroke Risk Detected</h2>
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Important Notice</h4>
+                    <p>Our analysis suggests potential stroke risk factors. Please:</p>
+                    <ul class="my-3">
+                        <li>Consult a healthcare professional immediately</li>
+                        <li>Monitor your symptoms</li>
+                        <li>Follow emergency protocols if needed</li>
+                    </ul>
+                    <hr>
+                    <p class="mb-0">Contact emergency services if experiencing stroke symptoms.</p>
+                </div>
+            </div>
+            {% elif prediction==0 %}
+            <div class="safe-result px-4">
+                <div class="text-center">
+                    <i class="fa-solid fa-circle-check result-icon text-success"></i>
+                </div>
+                <h2 class="text-center mb-3">Low Stroke Risk Identified</h2>
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Good News!</h4>
+                    <p>Our analysis indicates low stroke risk. Recommendations:</p>
+                    <ul class="my-3">
+                        <li>Maintain regular health checkups</li>
+                        <li>Follow a balanced diet</li>
+                        <li>Engage in regular physical activity</li>
+                    </ul>
+                    <hr>
+                    <p class="mb-0">Always consult a doctor for personalized advice.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Educational Section -->
+        <section class="educational-section mt-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Stroke Prevention Tips</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-heartbeat feature-icon"></i>
+                                <h5 class="card-title">Healthy Lifestyle</h5>
+                                <p class="card-text text-muted">Maintain balanced diet and regular exercise routine</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-ban-smoking feature-icon"></i>
+                                <h5 class="card-title">Avoid Risks</h5>
+                                <p class="card-text text-muted">Quit smoking and limit alcohol consumption</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-stethoscope feature-icon"></i>
+                                <h5 class="card-title">Regular Checkups</h5>
+                                <p class="card-text text-muted">Monitor blood pressure and cholesterol levels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+           
+            <p class="mb-0">Medical Disclaimer: This tool does not replace professional medical advice.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
